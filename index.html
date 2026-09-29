@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="da">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Copenhagen Harbour Race</title>
+  <meta name="theme-color" content="#13233f">
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="icon" href="img/favicon-32.png" sizes="32x32">
+  <link rel="apple-touch-icon" href="img/apple-touch-icon.png">
+  <link rel="alternate" hreflang="da" href="da/index.html">
+  <link rel="alternate" hreflang="en" href="en/index.html">
+  <script>
+    // Send visitors to /da/ or /en/: a language picked with the switch wins, then the browser language, then Danish.
+    (function () {
+      var lang = null;
+      try { lang = localStorage.getItem("lang"); } catch (e) {}
+      if (lang !== "da" && lang !== "en") {
+        var first = String((navigator.languages && navigator.languages[0]) || navigator.language || "da");
+        lang = first.toLowerCase().slice(0, 2) === "da" ? "da" : "en";
+      }
+      location.replace(lang + "/index.html");
+    })();
+  </script>
+  <noscript><meta http-equiv="refresh" content="0; url=da/index.html"></noscript>
+</head>
+<body>
+  <p><a href="da/index.html">Dansk</a> · <a href="en/index.html">English</a></p>
+</body>
+</html>

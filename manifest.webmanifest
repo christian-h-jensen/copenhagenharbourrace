@@ -1,0 +1,15 @@
+{
+  "name": "Copenhagen Harbour Race",
+  "short_name": "Harbour Race",
+  "description": "International regatta for 8+, inrigger and coastal boats in Copenhagen Harbour.",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#13233f",
+  "theme_color": "#13233f",
+  "icons": [
+    { "src": "img/icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any maskable" },
+    { "src": "img/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any maskable" }
+  ]
+}
