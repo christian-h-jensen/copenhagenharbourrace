@@ -26,3 +26,11 @@ Is "SAS Rowing Club" the old name for Bryggens Roklub? If so, the classes pages 
 ## 4. English rules are missing the inrigger and coastal section
 
 `da/rules.html` has a whole section, "Regattaregler for coastal- og inriggerløbene" (11 rules: course, start, overtaking buoy, boat requirements, crew, timing, handicap, seeding, clothing, registration, launching). `en/rules.html` only has the 8+ rules and the Best Club rules. The section needs translating for the English page.
+
+## 5. Coastal prizes: stray "mix class" line (Danish prizes page)
+
+`da/prizes.html`, the Coastal card, has an extra line under the heading: "Der er i mix klassen præmier som følger:" ("In the mix class the prizes are as follows:"). `en/prizes.html` doesn't have it. It says "mix" on a card headed "Coastal". Should the line be removed from the Danish page, translated for the English one, or should the card heading change?
+
+## 6. Safety: English has one more cox bullet
+
+`en/safety.html`, "Crew and cox", has 5 bullets. `da/safety.html` has 4. The English page has an extra one: "Have a cox who understands the safest course to take during the race and stick to it." Should it be translated for the Danish page, or removed from the English one?
