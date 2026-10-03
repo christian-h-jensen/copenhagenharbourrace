@@ -273,12 +273,17 @@ body.viewer-open { overflow: hidden; }
     -webkit-tap-highlight-color: transparent;
     padding-bottom: calc(4.25rem + env(safe-area-inset-bottom));
   }
-  /* The map banner scrolls away; this strip keeps the iPhone status bar readable in the installed app. */
-  .js body::before {
-    content: ""; position: fixed; top: 0; left: 0; right: 0; z-index: 40;
-    height: env(safe-area-inset-top); background: var(--harbour);
+  /* A slim map banner stays at the top, so changing page doesn't jump; only the content scrolls. */
+  .js { scroll-padding-top: calc(5rem + env(safe-area-inset-top)); }
+  .js .site-header {
+    position: sticky; top: 0; z-index: 20;
+    padding-top: env(safe-area-inset-top);
+    background-position: center 70%;
+    box-shadow: 0 4px 12px rgba(0,0,0,.18);
   }
-  .js .site-header { padding-top: env(safe-area-inset-top); }
+  .js .site-header .wrap { padding-top: .75rem; padding-bottom: .7rem; }
+  .js .brand-name { font-size: clamp(1rem, 5.2vw, 1.25rem); letter-spacing: .02em; white-space: nowrap; }
+  .js .brand-date { font-size: .65rem; margin-top: .3rem; letter-spacing: .22em; }
   .js .site-header .lang { display: none; } /* the language switch lives in the "More" sheet */
   .js .site-nav { display: none; }
   .js main .wrap { padding: 0 .75rem; }
@@ -379,8 +384,18 @@ body.viewer-open { overflow: hidden; }
   .map figcaption { text-align: center; }
 }
 
+/* Changing page fades the content over instead of redrawing the whole screen; on phones the
+   header and the tab bar stay put. Browsers without view transitions just load the page as before. */
+@view-transition { navigation: auto; }
+::view-transition-old(root), ::view-transition-new(root) { animation-duration: .18s; }
+@media (max-width: 48rem) {
+  .js .site-header { view-transition-name: header; }
+  .js .tabbar { view-transition-name: tabbar; }
+}
+
 @keyframes fade { from { opacity: 0; } }
 @keyframes rise { from { transform: translateY(100%); } }
 @media (prefers-reduced-motion: reduce) {
   .sheet, .sheet-panel, .viewer { animation: none !important; }
+  ::view-transition-group(*), ::view-transition-old(*), ::view-transition-new(*) { animation: none !important; }
 }
