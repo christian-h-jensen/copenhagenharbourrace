@@ -21,6 +21,39 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   }
 
+  // Open linked images in an overlay instead of navigating to the bare file:
+  // the installed iPhone app has no back button to get out of it again.
+  var viewer = null;
+  function closeViewer() {
+    if (!viewer) return;
+    viewer.remove();
+    viewer = null;
+    document.body.classList.remove("viewer-open");
+  }
+  document.querySelectorAll('a[href$=".jpg"], a[href$=".png"]').forEach(function (link) {
+    link.addEventListener("click", function (e) {
+      e.preventDefault();
+      var img = link.querySelector("img");
+      viewer = document.createElement("div");
+      viewer.className = "viewer";
+      viewer.setAttribute("role", "dialog");
+      viewer.setAttribute("aria-modal", "true");
+      viewer.innerHTML = '<button class="viewer-close" type="button"></button><img alt="">';
+      viewer.querySelector("button").textContent = document.documentElement.lang === "da" ? "Luk" : "Close";
+      viewer.querySelector("img").src = link.href;
+      viewer.querySelector("img").alt = img ? img.alt : "";
+      viewer.addEventListener("click", function (e) {
+        if (e.target === viewer || e.target.closest(".viewer-close")) { closeViewer(); link.focus(); }
+      });
+      document.body.appendChild(viewer);
+      document.body.classList.add("viewer-open");
+      viewer.querySelector("button").focus();
+    });
+  });
+  document.addEventListener("keydown", function (e) {
+    if (e.key === "Escape" && viewer) closeViewer();
+  });
+
   document.querySelectorAll("[data-lang]").forEach(function (link) {
     link.addEventListener("click", function () {
       try { localStorage.setItem("lang", link.getAttribute("data-lang")); } catch (e) {}
