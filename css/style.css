@@ -111,14 +111,94 @@ main { padding: 2rem 0 3rem; }
 .page dt { font-weight: 700; color: var(--harbour); margin-top: 1rem; }
 .page dd { margin: .25rem 0 0; }
 
-/* Front page programme */
-.schedule dl {
+/* Timelines: front page and party programmes, the course route */
+.timeline { margin: 0 0 1.5rem; }
+.timeline dl {
   display: grid; grid-template-columns: 4.5rem 1fr; gap: 0 1rem;
   margin: 0; padding: .6rem 0; border-bottom: 1px solid var(--line);
 }
-.schedule dl:last-of-type { border-bottom: 0; }
-.schedule dt { margin: 0; font-variant-numeric: tabular-nums; color: var(--signal-dark); }
-.schedule dd { margin: 0; grid-column: 2; }
+.timeline dl:last-of-type { border-bottom: 0; }
+.timeline dt { margin: 0; font-variant-numeric: tabular-nums; color: var(--signal-dark); }
+.timeline dd { margin: 0; grid-column: 2; }
+.km { display: block; color: var(--muted); font-size: .9rem; font-variant-numeric: tabular-nums; }
+
+/* Red call-to-action button (party tickets) */
+.page .cta { display: flex; flex-wrap: wrap; align-items: center; gap: .5rem 1rem; margin: 0 0 1.5rem; }
+.cta strong { color: var(--signal-dark); }
+.button {
+  display: inline-block; background: var(--signal); color: #fff; font-weight: 700;
+  text-decoration: none; padding: .7rem 1.3rem; border-radius: var(--radius);
+}
+.button:hover { background: var(--signal-dark); color: #fff; }
+
+/* Highlighted box */
+.note {
+  background: var(--wash); border-left: 4px solid var(--signal);
+  border-radius: 0 var(--radius) var(--radius) 0; padding: 1rem 1.25rem; margin: 0 0 1.5rem;
+}
+.page .note h2 { margin: 0 0 .4rem; font-size: 1.1rem; }
+.page .note > :last-child { margin-bottom: 0; }
+
+/* Cards side by side (classes, trophies, addresses) */
+.cards { display: grid; gap: 1rem; grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr)); margin: 0 0 1.5rem; }
+.card { border: 1px solid var(--line); border-radius: var(--radius); padding: 1.25rem; }
+.page .card h2 { margin: 0 0 .75rem; font-size: 1.2rem; }
+.page .card > :last-child { margin-bottom: 0; }
+.card-role { color: var(--signal-dark); font-weight: 600; font-size: .95rem; }
+.card address { font-style: normal; margin: 0 0 .75rem; }
+.page .plain { list-style: none; padding: 0; }
+.page .plain li { margin-bottom: .2rem; }
+.page .facts {
+  display: grid; grid-template-columns: auto 1fr; gap: .35rem 1rem;
+  padding-top: .75rem; border-top: 1px solid var(--line);
+}
+.page .facts dt { margin: 0; color: var(--muted); font-weight: 600; font-size: .9rem; padding-top: .1rem; }
+.page .facts dd { margin: 0; }
+
+/* Gold, silver and bronze places */
+.page .medals { list-style: none; padding: 0; counter-reset: place; }
+.page .medals li { display: flex; align-items: center; gap: .65rem; margin-bottom: .5rem; }
+.medals li::before {
+  counter-increment: place; content: counter(place);
+  flex: none; display: grid; place-items: center; width: 1.8rem; height: 1.8rem; border-radius: 50%;
+  font-weight: 800; font-size: .85rem; color: var(--ink);
+}
+.medals li:nth-child(1)::before { background: #ecc75e; }
+.medals li:nth-child(2)::before { background: #cfd4dc; }
+.medals li:nth-child(3)::before { background: #d9a273; }
+.card-sub { color: var(--muted); font-size: .95rem; }
+
+/* Numbered rules: one row per rule with a thin line between */
+.rulebook { margin: 0 0 1.5rem; }
+.page .rulebook dl { margin: 0; padding: .9rem 0; border-bottom: 1px solid var(--line); }
+.page .rulebook dl:last-child { border-bottom: 0; }
+.page .rulebook dt { margin: 0 0 .25rem; color: var(--signal-dark); }
+.page .rulebook dd { margin: 0; }
+.page .rulebook dd + dd { margin-top: .4rem; }
+.page .rulebook.compact dl { display: grid; grid-template-columns: 3rem 1fr; gap: 0 1rem; }
+.page .rulebook.compact dd { grid-column: 2; }
+
+.points { border-collapse: collapse; margin: .5rem 0 1.5rem; font-variant-numeric: tabular-nums; }
+.points caption { text-align: left; font-weight: 700; color: var(--harbour); padding-bottom: .4rem; }
+.points th, .points td { padding: .3rem 1rem; text-align: center; border-bottom: 1px solid var(--line); }
+.points thead th { color: var(--harbour); font-size: .9rem; }
+.points tbody th { text-align: left; color: var(--muted); font-weight: 600; }
+
+/* Checklist (safety) */
+.page .checklist { list-style: none; padding: 0; }
+.checklist li { position: relative; padding-left: 1.9rem; }
+.checklist li::before {
+  content: ""; position: absolute; left: .25rem; top: .5rem;
+  width: .75rem; height: .4rem; border-left: 2.5px solid var(--signal); border-bottom: 2.5px solid var(--signal);
+  transform: rotate(-45deg);
+}
+
+/* Photos in a grid with captions */
+.photos { display: grid; gap: 1rem; grid-template-columns: repeat(auto-fit, minmax(14rem, 1fr)); margin: 0 0 1.5rem; }
+.photos figure { margin: 0; }
+.photos a { display: block; }
+.photos img { display: block; width: 100%; border-radius: var(--radius); border: 1px solid var(--line); }
+.photos figcaption { font-size: .9rem; color: var(--muted); margin-top: .35rem; }
 
 .map { margin: 1rem 0 1.5rem; }
 .map a { display: block; }
@@ -274,21 +354,32 @@ body.viewer-open { overflow: hidden; }
     border-radius: 2px; background: var(--signal);
   }
 
-  /* Front page programme as a timeline. */
-  .schedule dl { grid-template-columns: 5rem 1fr; padding: 0; border: 0; }
-  .schedule dt { font-weight: 700; padding: .55rem 0; }
-  .schedule dd {
+  /* Programmes and the course route as a timeline. */
+  .timeline dl { grid-template-columns: 5rem 1fr; padding: 0; border: 0; }
+  .timeline dt { font-weight: 700; padding: .55rem 0; }
+  .timeline dd {
     position: relative; padding: .55rem 0 .55rem 1.75rem;
     border-left: 2px solid var(--line);
   }
-  .schedule dd::before {
+  .timeline dd::before {
     content: ""; position: absolute; left: -7px; top: 1.05rem;
     width: 12px; height: 12px; border-radius: 50%;
     background: var(--paper); border: 2px solid var(--signal);
   }
-  .schedule dl:first-of-type dd { border-image: linear-gradient(transparent 1.2rem, var(--line) 1.2rem) 1; }
-  .schedule dl:last-of-type dd { border-image: linear-gradient(var(--line) 1.2rem, transparent 1.2rem) 1; }
+  .timeline dl:first-of-type dd { border-image: linear-gradient(transparent 1.2rem, var(--line) 1.2rem) 1; }
+  .timeline dl:last-of-type dd { border-image: linear-gradient(var(--line) 1.2rem, transparent 1.2rem) 1; }
+
+  /* Rules: title in a left column, text on the right. */
+  .page .rulebook dl { display: grid; grid-template-columns: 13rem 1fr; gap: 0 1.5rem; }
+  .page .rulebook dd { grid-column: 2; }
+
+  /* Text on the left, tall map on the right (course, addresses). */
+  .split { display: grid; grid-template-columns: 1fr 1fr; gap: 2.5rem; align-items: start; margin-bottom: 1.5rem; }
+  .split .map { margin: 0; max-width: none; }
 }
+
+/* Words like "Line-up" and "Vending" need a wider label column than times. */
+.timeline.wide dl { grid-template-columns: 6rem 1fr; }
 
 /* Keep the tall course map at a readable size instead of the full card width. */
 @media (min-width: 48.01rem) {
