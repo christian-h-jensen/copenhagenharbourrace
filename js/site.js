@@ -54,6 +54,25 @@ document.addEventListener("DOMContentLoaded", function () {
     if (e.key === "Escape" && viewer) closeViewer();
   });
 
+  // Countdown strip under the menu. Update RACE_DAY each year.
+  var RACE_DAY = new Date(2026, 9, 10); // 10 October 2026 (months count from 0)
+  var nav = document.querySelector(".site-nav");
+  if (nav) {
+    var today = new Date(); today.setHours(0, 0, 0, 0);
+    var days = Math.round((RACE_DAY - today) / 86400000);
+    var da = document.documentElement.lang === "da";
+    var strip = document.createElement("p");
+    strip.className = "countdown";
+    if (days > 0) {
+      strip.innerHTML = "<strong></strong><span></span>";
+      strip.querySelector("strong").textContent = days + (da ? (days === 1 ? " dag" : " dage") : (days === 1 ? " day" : " days"));
+      strip.querySelector("span").textContent = da ? "til Copenhagen Harbour Race" : "until Copenhagen Harbour Race";
+    } else if (days === 0) {
+      strip.textContent = da ? "Det er løbsdag i dag!" : "It's race day!";
+    }
+    if (days >= 0) nav.after(strip);
+  }
+
   document.querySelectorAll("[data-lang]").forEach(function (link) {
     link.addEventListener("click", function () {
       try { localStorage.setItem("lang", link.getAttribute("data-lang")); } catch (e) {}
