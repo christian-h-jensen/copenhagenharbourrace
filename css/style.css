@@ -38,21 +38,30 @@ a:hover { color: var(--signal-dark); }
 }
 .skip:focus { left: 1rem; }
 
-/* Header band */
-.site-header { background: var(--harbour); color: #fff; }
+/* Header band: the name sits on the aerial course map */
+.site-header {
+  color: #fff;
+  background:
+    linear-gradient(rgba(19,35,63,.86), rgba(19,35,63,.9)),
+    url("../img/course-map.jpg") center 74% / cover;
+}
 .site-header .wrap {
-  display: flex; align-items: center; justify-content: space-between;
-  gap: 1rem; padding-top: 1.25rem; padding-bottom: 1.25rem;
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  text-align: center; gap: 1rem; position: relative;
+  padding-top: 2.25rem; padding-bottom: 2rem;
 }
 .brand { color: #fff; text-decoration: none; display: block; }
 .brand:hover { color: #fff; }
 .brand-name {
   display: block; margin: 0;
-  font-size: clamp(1.4rem, 4vw, 2.1rem); font-weight: 800;
-  letter-spacing: .02em; text-transform: uppercase; line-height: 1.1;
+  font-size: 1.75rem; font-weight: 800; text-wrap: balance;
+  letter-spacing: .03em; text-transform: uppercase; line-height: 1.1;
 }
 .brand-name span { color: var(--signal); }
-.brand-date { display: block; margin-top: .25rem; color: #c9d3e6; font-weight: 600; }
+.brand-date {
+  display: block; color: #fff; margin-top: .6rem; font-size: .75rem; font-weight: 700;
+  text-transform: uppercase; letter-spacing: .25em;
+}
 
 .lang { display: flex; gap: .25rem; flex-shrink: 0; }
 .lang a, .lang span {
@@ -94,11 +103,23 @@ a:hover { color: var(--signal-dark); }
   .site-nav .results a { display: inline-block; margin: .5rem 0 0; }
 }
 
-/* Content */
-main { padding: 2rem 0 3rem; }
+/* Countdown strip, added by js/site.js under the menu. */
+.countdown {
+  margin: 0; background: var(--signal); color: #fff; text-align: center;
+  padding: .5rem 1rem; font-weight: 700; text-transform: uppercase; letter-spacing: .12em; font-size: .7rem;
+}
+.countdown strong { font-size: 1.2rem; letter-spacing: .02em; margin-right: .5rem; vertical-align: -.1rem; }
+
+/* Content: the page floats as a card */
+main { padding: 1.25rem 0 2rem; }
 .page {
-  background: var(--paper); border: 1px solid var(--line); border-radius: var(--radius);
-  padding: clamp(1.25rem, 4vw, 2.5rem);
+  position: relative; background: var(--paper); border-radius: 12px;
+  padding: 1.75rem 1.25rem;
+  box-shadow: 0 1px 2px rgba(19,35,63,.06), 0 8px 24px rgba(19,35,63,.1);
+}
+.page > h1::before, .page > h2:first-child::before {
+  content: ""; display: block; width: 3rem; height: 4px; margin-bottom: 1rem;
+  border-radius: 2px; background: var(--signal);
 }
 .page > h1 { margin: 0 0 1rem; font-size: clamp(1.6rem, 4vw, 2.2rem); line-height: 1.2; color: var(--harbour); }
 .page h2 { margin: 2rem 0 .75rem; font-size: 1.3rem; line-height: 1.3; color: var(--harbour); }
@@ -113,13 +134,23 @@ main { padding: 2rem 0 3rem; }
 
 /* Timelines: front page and party programmes, the course route */
 .timeline { margin: 0 0 1.5rem; }
-.timeline dl {
-  display: grid; grid-template-columns: 4.5rem 1fr; gap: 0 1rem;
-  margin: 0; padding: .6rem 0; border-bottom: 1px solid var(--line);
+.timeline dl { display: grid; grid-template-columns: 4rem 1fr; gap: 0 .75rem; margin: 0; }
+.timeline dt {
+  margin: 0; padding: .55rem 0; font-weight: 700;
+  font-variant-numeric: tabular-nums; color: var(--signal-dark);
 }
-.timeline dl:last-of-type { border-bottom: 0; }
-.timeline dt { margin: 0; font-variant-numeric: tabular-nums; color: var(--signal-dark); }
-.timeline dd { margin: 0; grid-column: 2; }
+.timeline dd {
+  margin: 0; grid-column: 2;
+  position: relative; padding: .55rem 0 .55rem 1.25rem;
+  border-left: 2px solid var(--line);
+}
+.timeline dd::before {
+  content: ""; position: absolute; left: -7px; top: 1.05rem;
+  width: 12px; height: 12px; border-radius: 50%;
+  background: var(--paper); border: 2px solid var(--signal);
+}
+.timeline dl:first-of-type dd { border-image: linear-gradient(transparent 1.2rem, var(--line) 1.2rem) 1; }
+.timeline dl:last-of-type dd { border-image: linear-gradient(var(--line) 1.2rem, transparent 1.2rem) 1; }
 .km { display: block; color: var(--muted); font-size: .9rem; font-variant-numeric: tabular-nums; }
 
 /* Red call-to-action button (party tickets) */
@@ -236,28 +267,21 @@ body.viewer-open { overflow: hidden; }
 
 /* ---------- App layout on phones (JS on): compact sticky header, bottom tab bar, "More" sheet ---------- */
 .tabbar, .sheet { display: none; }
-@media (max-width: 48rem) { .countdown { display: none; } }
 
 @media (max-width: 48rem) {
   .js body {
     -webkit-tap-highlight-color: transparent;
     padding-bottom: calc(4.25rem + env(safe-area-inset-bottom));
   }
-  .js .site-header {
-    position: sticky; top: 0; z-index: 20;
-    padding-top: env(safe-area-inset-top);
-    box-shadow: 0 1px 0 rgba(255,255,255,.08), 0 4px 12px rgba(0,0,0,.18);
+  /* The map banner scrolls away; this strip keeps the iPhone status bar readable in the installed app. */
+  .js body::before {
+    content: ""; position: fixed; top: 0; left: 0; right: 0; z-index: 40;
+    height: env(safe-area-inset-top); background: var(--harbour);
   }
-  .js .site-header .wrap { padding-top: .6rem; padding-bottom: .6rem; }
-  .js .brand-name { font-size: 1.1rem; letter-spacing: .01em; white-space: nowrap; }
-  .js .brand-date { font-size: .8rem; margin-top: .1rem; }
+  .js .site-header { padding-top: env(safe-area-inset-top); }
   .js .site-header .lang { display: none; } /* the language switch lives in the "More" sheet */
   .js .site-nav { display: none; }
-
-  /* Content goes edge to edge like an app screen. */
-  .js main { padding: 0; }
-  .js main .wrap { padding: 0; }
-  .js .page { border: 0; border-radius: 0; padding: 1.25rem 1rem 2rem; min-height: 60vh; }
+  .js main .wrap { padding: 0 .75rem; }
   .js .site-footer { padding-bottom: 1.5rem; }
 
   .js .tabbar {
@@ -311,22 +335,11 @@ body.viewer-open { overflow: hidden; }
 }
 
 
-/* ---------- Computer screens: the name sits on the aerial course map, the page floats as a card ---------- */
+/* ---------- Computer screens: bigger banner, menu bar, wider card ---------- */
 @media (min-width: 48.01rem) {
-  .site-header {
-    background:
-      linear-gradient(rgba(19,35,63,.86), rgba(19,35,63,.9)),
-      url("../img/course-map.jpg") center 74% / cover;
-  }
-  .site-header .wrap {
-    flex-direction: column; justify-content: center; text-align: center;
-    position: relative; padding-top: 4rem; padding-bottom: 3.5rem;
-  }
-  .brand-name { font-size: 3rem; letter-spacing: .03em; }
-  .brand-date {
-    color: #fff; margin-top: .75rem; font-size: .9rem; font-weight: 700;
-    text-transform: uppercase; letter-spacing: .3em;
-  }
+  .site-header .wrap { padding-top: 4rem; padding-bottom: 3.5rem; }
+  .brand-name { font-size: 3rem; }
+  .brand-date { margin-top: .75rem; font-size: .9rem; letter-spacing: .3em; }
   .lang { position: absolute; top: 1.25rem; right: 1rem; }
 
   /* Dark menu bar under the banner; it stays in view while scrolling. */
@@ -336,38 +349,17 @@ body.viewer-open { overflow: hidden; }
   .site-nav a[aria-current="page"] { color: #fff; }
   .site-nav .results a { color: #fff; text-transform: none; letter-spacing: 0; font-size: .95rem; }
 
-  /* Countdown strip, added by js/site.js under the menu. */
-  .countdown {
-    margin: 0; background: var(--signal); color: #fff; text-align: center;
-    padding: .55rem 1rem; font-weight: 700; text-transform: uppercase; letter-spacing: .2em; font-size: .85rem;
-  }
-  .countdown strong { font-size: 1.5rem; letter-spacing: .02em; margin-right: .6rem; vertical-align: -.1rem; }
+  .countdown { padding: .55rem 1rem; letter-spacing: .2em; font-size: .85rem; }
+  .countdown strong { font-size: 1.5rem; margin-right: .6rem; }
 
   main { padding: 2.5rem 0 4rem; }
   .page {
-    position: relative; border: 0; border-radius: 12px;
     padding: 3rem 3.5rem;
     box-shadow: 0 1px 2px rgba(19,35,63,.06), 0 12px 32px rgba(19,35,63,.12);
   }
-  .page > h1::before, .page > h2:first-child::before {
-    content: ""; display: block; width: 3rem; height: 4px; margin-bottom: 1rem;
-    border-radius: 2px; background: var(--signal);
-  }
 
-  /* Programmes and the course route as a timeline. */
-  .timeline dl { grid-template-columns: 5rem 1fr; padding: 0; border: 0; }
-  .timeline dt { font-weight: 700; padding: .55rem 0; }
-  .timeline dd {
-    position: relative; padding: .55rem 0 .55rem 1.75rem;
-    border-left: 2px solid var(--line);
-  }
-  .timeline dd::before {
-    content: ""; position: absolute; left: -7px; top: 1.05rem;
-    width: 12px; height: 12px; border-radius: 50%;
-    background: var(--paper); border: 2px solid var(--signal);
-  }
-  .timeline dl:first-of-type dd { border-image: linear-gradient(transparent 1.2rem, var(--line) 1.2rem) 1; }
-  .timeline dl:last-of-type dd { border-image: linear-gradient(var(--line) 1.2rem, transparent 1.2rem) 1; }
+  .timeline dl { grid-template-columns: 5rem 1fr; gap: 0 1rem; }
+  .timeline dd { padding-left: 1.75rem; }
 
   /* Rules: title in a left column, text on the right. */
   .page .rulebook dl { display: grid; grid-template-columns: 13rem 1fr; gap: 0 1.5rem; }
