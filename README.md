@@ -1,6 +1,6 @@
 # copenhagenharbourrace.dk
 
-Static site for Copenhagen Harbour Race, hosted on GitHub Pages. Plain HTML/CSS, with no build step. See [PLAN.md](PLAN.md) and [docs/adr](docs/adr).
+Static site for Copenhagen Harbour Race, hosted on GitHub Pages. Plain HTML/CSS, with no build step. Instructions for AI coding agents are in [AGENTS.md](AGENTS.md).
 
 ```
 index.html      picks /da/ or /en/ from the browser language (or the language last picked with the switch)
