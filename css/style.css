@@ -197,7 +197,6 @@ main { padding: 1.25rem 0 2rem; }
 .medals li:nth-child(1)::before { background: #ecc75e; }
 .medals li:nth-child(2)::before { background: #cfd4dc; }
 .medals li:nth-child(3)::before { background: #d9a273; }
-.card-sub { color: var(--muted); font-size: .95rem; }
 
 /* Numbered rules: one row per rule with a thin line between */
 .rulebook { margin: 0 0 1.5rem; }
