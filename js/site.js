@@ -54,23 +54,45 @@ document.addEventListener("DOMContentLoaded", function () {
     if (e.key === "Escape" && viewer) closeViewer();
   });
 
-  // Countdown strip under the menu. Update RACE_DAY each year.
-  var RACE_DAY = new Date(2026, 9, 10); // 10 October 2026 (months count from 0)
+  // The race is always on the second Saturday of October. Once this year's race
+  // day has passed, show next year's date instead. The dates written in the HTML
+  // are only a fallback for browsers without JavaScript.
+  function raceDay(year) {
+    var firstOfOctober = new Date(year, 9, 1).getDay(); // 0 = Sunday, 6 = Saturday
+    return new Date(year, 9, 1 + (6 - firstOfOctober + 7) % 7 + 7);
+  }
+  var today = new Date(); today.setHours(0, 0, 0, 0);
+  var race = raceDay(today.getFullYear());
+  if (today > race) race = raceDay(today.getFullYear() + 1);
+  var da = document.documentElement.lang === "da";
+
+  var MONTHS_DA = ["januar", "februar", "marts", "april", "maj", "juni", "juli", "august", "september", "oktober", "november", "december"];
+  var MONTHS_EN = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+  // Every element with data-race-date gets the race date filled into its template,
+  // e.g. data-race-date="{d}. {month} {year}". The second Saturday always falls
+  // on the 8th to the 14th, so English templates can write "{d}th".
+  document.querySelectorAll("[data-race-date]").forEach(function (el) {
+    el.textContent = el.getAttribute("data-race-date")
+      .replace("{d}", race.getDate())
+      .replace("{month}", (da ? MONTHS_DA : MONTHS_EN)[race.getMonth()])
+      .replace("{year}", race.getFullYear());
+  });
+
+  // Countdown strip under the menu, shown from 1 September until race day.
   var nav = document.querySelector(".site-nav");
-  if (nav) {
-    var today = new Date(); today.setHours(0, 0, 0, 0);
-    var days = Math.round((RACE_DAY - today) / 86400000);
-    var da = document.documentElement.lang === "da";
+  var countdownFrom = new Date(race.getFullYear(), 8, 1); // 1 September
+  if (nav && today >= countdownFrom) {
+    var days = Math.round((race - today) / 86400000);
     var strip = document.createElement("p");
     strip.className = "countdown";
     if (days > 0) {
       strip.innerHTML = "<strong></strong><span></span>";
       strip.querySelector("strong").textContent = days + (da ? (days === 1 ? " dag" : " dage") : (days === 1 ? " day" : " days"));
       strip.querySelector("span").textContent = da ? "til Copenhagen Harbour Race" : "until Copenhagen Harbour Race";
-    } else if (days === 0) {
+    } else {
       strip.textContent = da ? "Det er løbsdag i dag!" : "It's race day!";
     }
-    if (days >= 0) nav.after(strip);
+    nav.after(strip);
   }
 
   document.querySelectorAll("[data-lang]").forEach(function (link) {
