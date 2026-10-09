@@ -32,7 +32,7 @@ Then open http://localhost:8000.
 
 Use find-and-replace across all files:
 
-- [ ] Race date in the header: `Lørdag 10. oktober 2026` / `Saturday 10 October 2026`. Optional: `js/site.js` already shows the right date (second Saturday of October, moving on to next year the day after the race), so this text is only seen without JavaScript.
+- [ ] Race date: nothing to do. `js/site.js` fills in the second Saturday of October in every element marked `data-race-date` (header, front page, party button), moving on to next year the day after the race. The date written in the HTML is only seen without JavaScript. When adding the date to new text, wrap it in e.g. `<span data-race-date="{d}. {month} {year}">10. oktober 2026</span>`.
 - [ ] Results link: `r=chr2026` → `r=chr<new year>`
 - [ ] Front page (`index.html`): welcome text and programme
 - [ ] Party page (`party.html`): ticket deadline, Billetto link, menu, prices

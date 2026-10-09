@@ -55,8 +55,8 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 
   // The race is always on the second Saturday of October. Once this year's race
-  // day has passed, show next year's date instead. The date written in the HTML
-  // is only a fallback for browsers without JavaScript.
+  // day has passed, show next year's date instead. The dates written in the HTML
+  // are only a fallback for browsers without JavaScript.
   function raceDay(year) {
     var firstOfOctober = new Date(year, 9, 1).getDay(); // 0 = Sunday, 6 = Saturday
     return new Date(year, 9, 1 + (6 - firstOfOctober + 7) % 7 + 7);
@@ -68,10 +68,14 @@ document.addEventListener("DOMContentLoaded", function () {
 
   var MONTHS_DA = ["januar", "februar", "marts", "april", "maj", "juni", "juli", "august", "september", "oktober", "november", "december"];
   var MONTHS_EN = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
-  document.querySelectorAll(".brand-date").forEach(function (el) {
-    el.textContent = da
-      ? "Lørdag " + race.getDate() + ". " + MONTHS_DA[race.getMonth()] + " " + race.getFullYear()
-      : "Saturday " + race.getDate() + " " + MONTHS_EN[race.getMonth()] + " " + race.getFullYear();
+  // Every element with data-race-date gets the race date filled into its template,
+  // e.g. data-race-date="{d}. {month} {year}". The second Saturday always falls
+  // on the 8th to the 14th, so English templates can write "{d}th".
+  document.querySelectorAll("[data-race-date]").forEach(function (el) {
+    el.textContent = el.getAttribute("data-race-date")
+      .replace("{d}", race.getDate())
+      .replace("{month}", (da ? MONTHS_DA : MONTHS_EN)[race.getMonth()])
+      .replace("{year}", race.getFullYear());
   });
 
   // Countdown strip under the menu, shown from 1 September until race day.
