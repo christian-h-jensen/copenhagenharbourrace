@@ -7,7 +7,7 @@ index.html      picks /da/ or /en/ from the browser language (or the language la
 da/*.html       Danish pages
 en/*.html       English pages (same file names as da/)
 css/style.css   all styling
-js/site.js      phone "More" sheet, remembers the DA/EN choice, registers sw.js
+js/site.js      phone "More" sheet, race date and countdown, remembers the DA/EN choice, registers sw.js
 sw.js           offline copy of the pages (network first, cache as fallback)
 manifest.webmanifest  makes the site installable ("Add to Home Screen")
 img/            map, photos, logos, app icons (icon.svg is the source)
@@ -32,7 +32,7 @@ Then open http://localhost:8000.
 
 Use find-and-replace across all files:
 
-- [ ] Race date in the header: `Lørdag 10. oktober 2026` / `Saturday 10 October 2026`
+- [ ] Race date in the header: `Lørdag 10. oktober 2026` / `Saturday 10 October 2026`. Optional: `js/site.js` already shows the right date (second Saturday of October, moving on to next year the day after the race), so this text is only seen without JavaScript.
 - [ ] Results link: `r=chr2026` → `r=chr<new year>`
 - [ ] Front page (`index.html`): welcome text and programme
 - [ ] Party page (`party.html`): ticket deadline, Billetto link, menu, prices
