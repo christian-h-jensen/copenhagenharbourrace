@@ -235,6 +235,26 @@ main { padding: 1.25rem 0 2rem; }
 .map img { display: block; width: 100%; border-radius: var(--radius); border: 1px solid var(--line); }
 .map figcaption { font-size: .9rem; color: var(--muted); margin-top: .4rem; }
 
+/* Handicap calculator (handicap.html, js/handicap.js) */
+.crew { width: 100%; max-width: 30rem; border-collapse: collapse; margin: 0 0 1rem; font-variant-numeric: tabular-nums; }
+.crew th, .crew td { padding: .3rem .5rem .3rem 0; text-align: left; border-bottom: 1px solid var(--line); }
+.crew thead th { color: var(--harbour); font-size: .9rem; }
+.crew tbody th { color: var(--muted); font-weight: 600; }
+.crew th:last-child, .crew td:last-child { text-align: right; padding-right: 0; }
+.page select, .page input {
+  font: inherit; color: var(--ink); background: var(--paper);
+  border: 1px solid var(--line); border-radius: var(--radius); padding: .35rem .5rem;
+}
+.page input[type="number"] { width: 4.5rem; }
+.page [aria-invalid="true"] { border-color: var(--signal); box-shadow: 0 0 0 1px var(--signal); }
+.page .time { display: flex; flex-wrap: wrap; align-items: center; gap: .4rem .75rem; margin-bottom: 1.5rem; }
+.time label { font-weight: 700; color: var(--harbour); flex-basis: 100%; }
+.time input { width: 8rem; }
+.time span { color: var(--muted); font-size: .9rem; }
+.result .facts { padding-top: 0; border-top: 0; }
+.result strong { font-size: 1.2rem; color: var(--harbour); }
+.result .warn { margin: .75rem 0 0; color: var(--signal-dark); font-weight: 600; }
+
 /* Full-size image overlay (opened from js/site.js) */
 .viewer {
   position: fixed; inset: 0; z-index: 100; background: rgba(10, 18, 32, .94);

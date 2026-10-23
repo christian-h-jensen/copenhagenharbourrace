@@ -1,9 +1,9 @@
 // Offline support: always try the network first (so edits show up straight away),
 // fall back to the cached copy when there is no signal, e.g. out on the water.
 // Bump VERSION when files are added or removed from PRECACHE.
-var VERSION = "chr-v2";
-var PAGES = ["index", "course", "classes", "prizes", "rules", "safety", "party", "addresses"];
-var PRECACHE = ["./", "index.html", "css/style.css", "js/site.js", "manifest.webmanifest",
+var VERSION = "chr-v3";
+var PAGES = ["index", "course", "classes", "prizes", "rules", "safety", "party", "addresses", "handicap"];
+var PRECACHE = ["./", "index.html", "css/style.css", "js/site.js", "js/handicap.js", "manifest.webmanifest",
   "img/course-map.jpg", "img/skudehavnen.jpg", "img/skudehavnen400.jpg",
   "img/toemmergraven.jpg", "img/toemmergraven400.jpg", "img/icon-192.png", "img/logo-kr.png", "img/logo-bryggens.png"]
   .concat(PAGES.map(function (p) { return "da/" + p + ".html"; }))

@@ -1,0 +1,151 @@
+<!doctype html>
+<html lang="da">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#13233f">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="Harbour Race">
+  <link rel="manifest" href="../manifest.webmanifest">
+  <link rel="icon" href="../img/favicon-32.png" sizes="32x32">
+  <link rel="apple-touch-icon" href="../img/apple-touch-icon.png">
+  <title>Handicapberegner – Copenhagen Harbour Race</title>
+  <meta name="description" content="Copenhagen Harbour Race – international regatta for ottere, inriggere og coastalbåde i Københavns Havn.">
+  <link rel="alternate" hreflang="en" href="../en/handicap.html">
+  <link rel="stylesheet" href="../css/style.css">
+  <script src="../js/site.js" defer></script>
+  <script src="../js/handicap.js" defer></script>
+  <script>document.documentElement.className = "js";</script>
+</head>
+<body>
+  <a class="skip" href="#content">Spring til indhold</a>
+
+  <header class="site-header">
+    <div class="wrap">
+      <a class="brand" href="index.html">
+        <p class="brand-name">Copenhagen <span>Harbour</span> Race</p>
+        <span class="brand-date" data-race-date="Lørdag {d}. {month} {year}">Lørdag 10. oktober 2026</span>
+      </a>
+      <nav class="lang" aria-label="Language">
+        <span aria-current="true">DA</span>
+        <a href="../en/handicap.html" hreflang="en" lang="en" data-lang="en" title="English">EN</a>
+      </nav>
+    </div>
+  </header>
+
+  <nav class="site-nav" aria-label="Hovedmenu">
+    <div class="wrap">
+      <ul>
+        <li><a href="index.html">Forside</a></li>
+        <li><a href="course.html">Banen</a></li>
+        <li><a href="classes.html">Løbsklasser</a></li>
+        <li><a href="prizes.html">Præmier</a></li>
+        <li><a href="rules.html">Regler</a></li>
+        <li><a href="safety.html">Sikkerhed</a></li>
+        <li><a href="party.html">Fest</a></li>
+        <li><a href="addresses.html">Adresser</a></li>
+        <li class="results"><a href="https://tilmeld.roning.dk/resultater.php?r=chr2026" target="_blank" rel="noopener">Resultater ↗</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <main id="content">
+    <div class="wrap">
+      <article class="page">
+<h1>Handicapberegner</h1>
+<p>Beregneren finder holdets H-faktor i klassen Mix/masters 8+, hvor alle roere skal være mindst 27 år. Den følger dokumentet <a href="https://drive.google.com/file/d/1AvXaAc7SuB-_tz-lsvRzSNJ2OHYrECJe/view" target="_blank" rel="noopener">H-Faktor i Copenhagen Harbour Race</a> (rev. 6), som <a href="rules.html">reglerne</a> henviser til i punkt 5.</p>
+<p>For hver roer findes H-faktoren ud fra køn og alder. Holdets H-faktor er gennemsnittet af roernes faktorer. Ganges den med den roede tid, får man den korrigerede tid, som holdene rangeres efter.</p>
+<p>Hver roer bruger rækken for sin aldersgruppe, dvs. alderen rundet ned til nærmeste alder i tabellen: 27 år bruger 25, 34 år bruger 30, og 80 år og derover bruger 80. Styrmanden tælles ikke med. Beregneren er kun vejledende.</p>
+<noscript><p class="note">Beregneren og tabellen over H-faktorer kræver JavaScript. Tabellen findes også i dokumentet.</p></noscript>
+<div id="calculator" hidden>
+<h2>Holdet</h2>
+<form>
+<table class="crew">
+<thead><tr><th scope="col">Roer</th><th scope="col">Køn</th><th scope="col">Alder</th><th scope="col">H-faktor</th></tr></thead>
+<tbody>
+<tr><th scope="row">1</th><td><select aria-label="Roer 1, køn"><option value="">–</option><option value="m">Mand</option><option value="w">Kvinde</option></select></td><td><input type="number" min="1" max="120" step="1" inputmode="numeric" aria-label="Roer 1, alder"></td><td><output>–</output></td></tr>
+<tr><th scope="row">2</th><td><select aria-label="Roer 2, køn"><option value="">–</option><option value="m">Mand</option><option value="w">Kvinde</option></select></td><td><input type="number" min="1" max="120" step="1" inputmode="numeric" aria-label="Roer 2, alder"></td><td><output>–</output></td></tr>
+<tr><th scope="row">3</th><td><select aria-label="Roer 3, køn"><option value="">–</option><option value="m">Mand</option><option value="w">Kvinde</option></select></td><td><input type="number" min="1" max="120" step="1" inputmode="numeric" aria-label="Roer 3, alder"></td><td><output>–</output></td></tr>
+<tr><th scope="row">4</th><td><select aria-label="Roer 4, køn"><option value="">–</option><option value="m">Mand</option><option value="w">Kvinde</option></select></td><td><input type="number" min="1" max="120" step="1" inputmode="numeric" aria-label="Roer 4, alder"></td><td><output>–</output></td></tr>
+<tr><th scope="row">5</th><td><select aria-label="Roer 5, køn"><option value="">–</option><option value="m">Mand</option><option value="w">Kvinde</option></select></td><td><input type="number" min="1" max="120" step="1" inputmode="numeric" aria-label="Roer 5, alder"></td><td><output>–</output></td></tr>
+<tr><th scope="row">6</th><td><select aria-label="Roer 6, køn"><option value="">–</option><option value="m">Mand</option><option value="w">Kvinde</option></select></td><td><input type="number" min="1" max="120" step="1" inputmode="numeric" aria-label="Roer 6, alder"></td><td><output>–</output></td></tr>
+<tr><th scope="row">7</th><td><select aria-label="Roer 7, køn"><option value="">–</option><option value="m">Mand</option><option value="w">Kvinde</option></select></td><td><input type="number" min="1" max="120" step="1" inputmode="numeric" aria-label="Roer 7, alder"></td><td><output>–</output></td></tr>
+<tr><th scope="row">8</th><td><select aria-label="Roer 8, køn"><option value="">–</option><option value="m">Mand</option><option value="w">Kvinde</option></select></td><td><input type="number" min="1" max="120" step="1" inputmode="numeric" aria-label="Roer 8, alder"></td><td><output>–</output></td></tr>
+</tbody>
+</table>
+<p class="time"><label for="time">Roet tid (valgfri)</label> <input id="time" type="text" autocomplete="off" placeholder="24:21,7" aria-describedby="time-hint"> <span id="time-hint">mm:ss,t</span></p>
+</form>
+<div class="note result" aria-live="polite">
+<h2>Resultat</h2>
+<dl class="facts">
+<dt>Roere</dt><dd><span id="count">0</span> af 8</dd>
+<dt>Holdets H-faktor</dt><dd><strong id="crew-factor">–</strong> <span id="crew-factor-exact"></span></dd>
+<dt>Korrigeret tid</dt><dd><strong id="corrected">–</strong></dd>
+</dl>
+<p class="warn" id="warn-count" hidden>Holdet har færre end 8 roere.</p>
+<p class="warn" id="warn-age" hidden>Mindst én roer er under 27 år. I Mix/masters skal alle roere være mindst 27 år.</p>
+<p class="warn" id="warn-time" hidden>Tiden kan ikke læses. Skriv den som minutter:sekunder,tiendedele, f.eks. 24:21,7.</p>
+</div>
+<table class="points">
+<caption>H-faktorer (dokumentets tabel, version 4)</caption>
+<thead><tr><th scope="col">Alder</th><th scope="col">Mænd</th><th scope="col">Kvinder</th></tr></thead>
+<tbody id="h-table"></tbody>
+</table>
+</div>
+      </article>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap">
+      <section>
+        <h2>Arrangører</h2>
+        <div class="logos">
+          <a href="https://www.kr.dk/" target="_blank" rel="noopener"><img class="logo-kr" src="../img/logo-kr.png" alt="Københavns Roklub" width="1063" height="174"></a>
+          <a href="https://www.bryggensroklub.dk/" target="_blank" rel="noopener"><img class="logo-bryggens" src="../img/logo-bryggens.png" alt="Bryggens Roklub" width="201" height="144"></a>
+        </div>
+      </section>
+      <section>
+        <h2>Kontakt os</h2>
+        <p><a href="mailto:info@copenhagenharbourrace.dk">info@copenhagenharbourrace.dk</a></p>
+        <p><a href="mailto:info@copenhagenharbourrace.dk">Har du lyst til at blive sponsor?</a></p>
+      </section>
+      <section>
+        <h2>Følg med</h2>
+        <p><a href="https://www.facebook.com/groups/copenhagenharbourrace/" target="_blank" rel="noopener">Copenhagen Harbour Race på Facebook</a></p>
+      </section>
+      <p class="copyright">© Copenhagen Harbour Race</p>
+    </div>
+  </footer>
+
+  <nav class="tabbar" aria-label="Hovedmenu">
+    <a href="index.html"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 11.5 12 4l9 7.5"/><path d="M5.5 9.5V20h13V9.5"/><path d="M10 20v-5.5h4V20"/></svg><span>Forside</span></a>
+    <a href="course.html"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 4 3 6.5v13.5L9 17.5l6 2.5 6-2.5V4l-6 2.5z"/><path d="M9 4v13.5M15 6.5V20"/></svg><span>Banen</span></a>
+    <a href="https://tilmeld.roning.dk/resultater.php?r=chr2026" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 21h8M12 17v4"/><path d="M7 4h10v5a5 5 0 0 1-10 0z"/><path d="M7 6H4a3 3 0 0 0 3 4M17 6h3a3 3 0 0 1-3 4"/></svg><span>Resultater</span></a>
+    <a href="party.html"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 3h8l-1 7a3 3 0 0 1-6 0z"/><path d="M12 13v7M8.5 20.5h7"/></svg><span>Fest</span></a>
+    <button class="tab-more is-current" type="button" aria-expanded="false" aria-controls="more-sheet"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="5" cy="12" r="1.6"/><circle cx="12" cy="12" r="1.6"/><circle cx="19" cy="12" r="1.6"/></svg><span>Mere</span></button>
+  </nav>
+
+  <div class="sheet" id="more-sheet" hidden>
+    <div class="sheet-panel" role="dialog" aria-modal="true" aria-label="Mere">
+      <div class="sheet-head">
+        <span class="sheet-grip" aria-hidden="true"></span>
+        <button class="sheet-close" type="button">Luk</button>
+      </div>
+      <ul class="sheet-list">
+        <li><a href="classes.html">Løbsklasser</a></li>
+        <li><a href="prizes.html">Præmier</a></li>
+        <li><a href="rules.html">Regler</a></li>
+        <li><a href="safety.html">Sikkerhed</a></li>
+        <li><a href="addresses.html">Adresser</a></li>
+      </ul>
+      <div class="sheet-lang">
+        <span>Sprog</span>
+        <a href="../en/handicap.html" hreflang="en" lang="en" data-lang="en">English</a>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

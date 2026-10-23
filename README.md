@@ -8,6 +8,7 @@ da/*.html       Danish pages
 en/*.html       English pages (same file names as da/)
 css/style.css   all styling
 js/site.js      phone "More" sheet, race date and countdown, remembers the DA/EN choice, registers sw.js
+js/handicap.js  handicap calculator on handicap.html, with the table of H-factors
 sw.js           offline copy of the pages (network first, cache as fallback)
 manifest.webmanifest  makes the site installable ("Add to Home Screen")
 img/            map, photos, logos, app icons (icon.svg is the source)
@@ -26,7 +27,7 @@ Then open http://localhost:8000.
 
 - Edit the text directly in `da/<page>.html` and the matching `en/<page>.html`.
 - If you add or rename a page or image, update the `PRECACHE` list in `sw.js` and bump `VERSION`.
-- The header, menu, bottom tab bar and footer are copied into all 16 pages. To change them, use find-and-replace across the `da/` and `en/` folders.
+- The header, menu, bottom tab bar and footer are copied into all 18 pages. To change them, use find-and-replace across the `da/` and `en/` folders.
 
 ## Yearly update checklist
 

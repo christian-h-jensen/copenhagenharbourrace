@@ -9,7 +9,7 @@ Copenhagen Harbour Race is an annual international rowing regatta for eights, in
 - Hand-written static HTML and CSS. No build step, no Jekyll, no frameworks. Don't add any.
 - One file per page per language: `da/<page>.html` and `en/<page>.html` with the same file names. Every change to page content goes into both files. Shared facts, such as the race date, must be updated in both languages.
 - The DA/EN switch in the header links each page to its counterpart in the other language.
-- The header, menu, bottom tab bar and footer are copied into all 16 pages. Change them with find-and-replace across `da/` and `en/`.
+- The header, menu, bottom tab bar and footer are copied into all 18 pages. Change them with find-and-replace across `da/` and `en/`.
 - If you add, remove or rename a page or image, update `PRECACHE` in `sw.js` and bump `VERSION`.
 
 ## Content rules
