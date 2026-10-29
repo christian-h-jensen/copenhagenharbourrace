@@ -245,7 +245,7 @@ main { padding: 1.25rem 0 2rem; }
   font: inherit; color: var(--ink); background: var(--paper);
   border: 1px solid var(--line); border-radius: var(--radius); padding: .35rem .5rem;
 }
-.page input[type="number"] { width: 4.5rem; }
+.page input[type="number"] { width: 5.5rem; }
 .page [aria-invalid="true"] { border-color: var(--signal); box-shadow: 0 0 0 1px var(--signal); }
 .page .time { display: flex; flex-wrap: wrap; align-items: center; gap: .4rem .75rem; margin-bottom: 1.5rem; }
 .time label { font-weight: 700; color: var(--harbour); flex-basis: 100%; }

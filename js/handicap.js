@@ -74,20 +74,28 @@ document.addEventListener("DOMContentLoaded", function () {
   var rows = form.querySelectorAll("tbody tr");
   var time = document.getElementById("time");
 
-  // Recalculate on every change. Only rowers with both gender and age count.
+  // Each rower's age is the age they turn in the year of the next race (site.js),
+  // so everyone born in the same year counts as the same age.
+  var raceYear = nextRaceDay().getFullYear();
+
+  // Recalculate on every change. Only rowers with both gender and year of birth count.
   function update() {
     var factors = [];
     var tooYoung = false;
     rows.forEach(function (row) {
       var gender = row.querySelector("select").value;
-      var ageInput = row.querySelector("input");
-      var age = ageInput.value === "" ? NaN : Number(ageInput.value);
-      var ok = gender !== "" && age > 0;
+      var bornInput = row.querySelector("input");
+      var born = /^\d{4}$/.test(bornInput.value) ? Number(bornInput.value) : NaN;
+      var age = born <= raceYear ? raceYear - born : NaN;
+      var ok = gender !== "" && !isNaN(age);
       var f = ok ? hFactor(gender, age) : NaN;
       if (ok) factors.push(f);
       if (age < 27) tooYoung = true;
-      ageInput.setAttribute("aria-invalid", age < 27 ? "true" : "false");
-      row.querySelector("output").textContent = ok ? decimal(f, 3, mark) : "–";
+      // Don't flag a year that is still being typed, only a whole one that can't be right.
+      var bad = age < 27 || (bornInput.value.length >= 4 && isNaN(age));
+      bornInput.setAttribute("aria-invalid", bad ? "true" : "false");
+      row.querySelector(".age").textContent = isNaN(age) ? "–" : age;
+      row.querySelector(".factor").textContent = ok ? decimal(f, 3, mark) : "–";
     });
 
     var crew = factors.length ? crewFactor(factors) : NaN;

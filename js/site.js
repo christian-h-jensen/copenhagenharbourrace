@@ -1,4 +1,17 @@
 // Phone "More" sheet, remembering the DA/EN choice, and offline support.
+
+// The race is always on the second Saturday of October. Once this year's race
+// day has passed, the next race is next year's. Also used by js/handicap.js.
+function raceDay(year) {
+  var firstOfOctober = new Date(year, 9, 1).getDay(); // 0 = Sunday, 6 = Saturday
+  return new Date(year, 9, 1 + (6 - firstOfOctober + 7) % 7 + 7);
+}
+function nextRaceDay() {
+  var today = new Date(); today.setHours(0, 0, 0, 0);
+  var race = raceDay(today.getFullYear());
+  return today > race ? raceDay(today.getFullYear() + 1) : race;
+}
+
 document.addEventListener("DOMContentLoaded", function () {
   var sheet = document.getElementById("more-sheet");
   var moreButton = document.querySelector(".tab-more");
@@ -54,16 +67,9 @@ document.addEventListener("DOMContentLoaded", function () {
     if (e.key === "Escape" && viewer) closeViewer();
   });
 
-  // The race is always on the second Saturday of October. Once this year's race
-  // day has passed, show next year's date instead. The dates written in the HTML
-  // are only a fallback for browsers without JavaScript.
-  function raceDay(year) {
-    var firstOfOctober = new Date(year, 9, 1).getDay(); // 0 = Sunday, 6 = Saturday
-    return new Date(year, 9, 1 + (6 - firstOfOctober + 7) % 7 + 7);
-  }
+  // The dates written in the HTML are only a fallback for browsers without JavaScript.
   var today = new Date(); today.setHours(0, 0, 0, 0);
-  var race = raceDay(today.getFullYear());
-  if (today > race) race = raceDay(today.getFullYear() + 1);
+  var race = nextRaceDay();
   var da = document.documentElement.lang === "da";
 
   var MONTHS_DA = ["januar", "februar", "marts", "april", "maj", "juni", "juli", "august", "september", "oktober", "november", "december"];
